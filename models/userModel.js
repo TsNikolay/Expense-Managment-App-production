@@ -1,22 +1,25 @@
 const mongoose = require("mongoose");
 
-//Схема запису в базі данних
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please, enter your name "],
+//schema design
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "name is required"],
+    },
+    email: {
+      type: String,
+      required: [true, "email is required and should be unique"],
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "password is required"],
+    },
   },
-  email: {
-    type: String,
-    required: [true, "Please, enter unique email address"],
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: [true, "Please, enter password"],
-  },
-});
+  { timestamps: true }
+);
 
+//export
 const userModel = mongoose.model("users", userSchema);
-
 module.exports = userModel;

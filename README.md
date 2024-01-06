@@ -1,2 +1,2 @@
-# Expense-Managment-App-production
-MERN stack application to manage expense. CRUD and Authorization
+# prouction-Expense-app-mern
+expense mern stack app
