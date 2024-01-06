@@ -1,10 +1,8 @@
 const userModel = require("../models/userModel");
-
-// login callback
 const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await userModel.findOne({ email, password });
+    let user = await userModel.findOne({ email, password });
     if (!user) {
       return res.status(404).send("User Not Found");
     }
@@ -12,29 +10,28 @@ const loginController = async (req, res) => {
       success: true,
       user,
     });
-  } catch (error) {
+  } catch (exception) {
     res.status(400).json({
       success: false,
-      error,
+      exception,
     });
   }
 };
 
-//Register Callback
-const registerController = async (req, res) => {
+const registrationController = async (req, res) => {
   try {
-    const newUser = new userModel(req.body);
-    await newUser.save();
+    let user = new userModel(req.body);
+    await user.save();
     res.status(201).json({
       success: true,
-      newUser,
+      user,
     });
-  } catch (error) {
+  } catch (exception) {
     res.status(400).json({
       success: false,
-      error,
+      exception,
     });
   }
 };
 
-module.exports = { loginController, registerController };
+module.exports = { loginController, registrationController };
