@@ -8,7 +8,7 @@ const path = require("path");
 // Файл конфигурации dot env;
 dotenv.config();
 
-connectDb();
+dbConnect();
 
 const app = express();
 
